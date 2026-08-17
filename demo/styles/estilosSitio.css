@@ -1,65 +1,165 @@
+/* Listado de ofertas y panel de administración.
+
+   La versión anterior colocaba el texto junto al avión con
+   `margin-top: -80px`, que funciona solo si la imagen mide exactamente lo
+   previsto. Aquí cada tarjeta es una rejilla: la imagen en su columna y el
+   texto en la otra, sin números mágicos.
+
+   También había un `img { width: 20% }` suelto que alcanzaba a cualquier
+   imagen de la página, incluida la de "en construcción". */
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    padding: 0 24px 48px;
+    background-color: #eef1f5;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+                 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: #1c2430;
+}
+
 .div-page {
-    text-align: center;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    width: 60%;
+    width: 100%;
+    max-width: 780px;
     margin: 0 auto;
-    background-color: lightgray;
 }
 
 .header {
     display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
     justify-content: space-between;
-    align-items: baseline;
+    align-items: center;
+    padding: 24px 0 16px;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 1.5rem;
+    letter-spacing: -0.02em;
 }
 
 .header-acciones {
     display: flex;
-    gap: 18px;
+    gap: 8px;
 }
 
 .header button {
-    background-color: transparent;
-    border: 0;
-    color: black;
-    text-decoration: underline;
+    padding: 7px 14px;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    color: #1c2430;
+    background-color: #ffffff;
+    border: 1px solid #d5dbe3;
+    border-radius: 6px;
     cursor: pointer;
-    font-size: 16px;
+    transition: border-color 0.15s, background-color 0.15s;
 }
 
+.header button:hover {
+    background-color: #f7f9fb;
+    border-color: #9aa6b5;
+}
+
+hr {
+    margin: 0 0 24px;
+    border: 0;
+    border-top: 1px solid #d5dbe3;
+}
+
+/* ── Tarjeta de oferta ───────────────────────────────────────────── */
+
 .div-item {
-    border: 1px solid black;
-    border-radius: 4px;
-    margin-bottom: 20px;
-    padding: 20px;
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    grid-template-areas:
+        "avion ruta"
+        "avion info"
+        "avion precio";
+    gap: 6px 18px;
+    align-items: center;
+    margin-bottom: 14px;
+    padding: 18px 20px;
+    background-color: #ffffff;
+    border: 1px solid #d5dbe3;
+    border-radius: 10px;
+    transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.div-item:hover {
+    border-color: #9aa6b5;
+    box-shadow: 0 4px 18px rgba(28, 36, 48, 0.07);
+}
+
+.div-item img {
+    grid-area: avion;
+    width: 56px;
+    height: auto;
+    opacity: 0.75;
 }
 
 .item-ruta {
+    grid-area: ruta;
     display: flex;
-    justify-content: space-between;
-    font-weight: 800;    
-    font-size: 25px;
-    margin-bottom: 40px;
-    margin-top: -80px;
-}
-
-.item-info {    
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-}
-
-.item-precio {    
-    display: flex;
-    justify-content: end;
-    font-size: 25px;
+    align-items: baseline;
+    gap: 12px;
+    font-size: 1.2rem;
     font-weight: 800;
 }
 
-img {
-    width: 20%;
-    height: 20%;
+/* La flecha entre origen y destino la pone el CSS: así el JS solo
+   escribe los datos y no la decoración. */
+.item-ruta > div:first-child::after {
+    content: " →";
+    color: #9aa6b5;
+    font-weight: 400;
 }
 
-a { 
-    color: black;
+.item-info {
+    grid-area: info;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 20px;
+    font-size: 0.85rem;
+    color: #6b7787;
+}
+
+.item-precio {
+    grid-area: precio;
+    justify-self: end;
+    margin-top: 4px;
+    font-size: 1.35rem;
+    font-weight: 800;
+}
+
+/* ── Panel de administración ─────────────────────────────────────── */
+
+.div-page > div > img {
+    display: block;
+    width: 180px;
+    max-width: 60%;
+    height: auto;
+    margin: 32px auto 16px;
+    opacity: 0.8;
+}
+
+.div-page > h3 {
+    text-align: center;
+    font-weight: 600;
+    color: #6b7787;
+}
+
+a { color: #1c2430; }
+
+@media (max-width: 520px) {
+    .div-item {
+        grid-template-columns: 40px 1fr;
+        gap: 4px 14px;
+        padding: 14px 16px;
+    }
+    .div-item img { width: 40px; }
+    .item-ruta { font-size: 1.05rem; }
 }
