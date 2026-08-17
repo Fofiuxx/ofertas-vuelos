@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administración — TripExpress</title>
+    <link rel="stylesheet" type="text/css" href="../styles/estilosSitio.css">
+</head>
+<body class="div-page">
+    <div class="header">
+        <h1>Panel de administración</h1>
+        <div class="header-acciones">
+            <button onclick="window.location.href='home.html'">Volver</button>
+            <button onclick="cerrarSesion()">Cerrar sesión</button>
+        </div>
+    </div>
+    <hr/>
+    <div>
+        <img src="../img/construccion.png" alt="En construcción">
+    </div>
+    <h3>Página en construcción</h3>
+
+    <script src="../scripts/demo-backend.js"></script>
+    <script src="../scripts/sesion.js"></script>
+    <script>
+        // Sin esto, escribir la dirección a mano bastaba para entrar al panel.
+        exigirSesion({ soloAdministradores: true });
+    </script>
+</body>
+</html>

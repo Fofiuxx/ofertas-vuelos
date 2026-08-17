@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TripExpress — demo</title>
+  <style>
+    :root { color-scheme: dark; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      background: #0b1420;
+      color: #e8edf5;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      line-height: 1.6;
+    }
+    .caja {
+      width: 100%;
+      max-width: 520px;
+      background: #0f2233;
+      border: 1px solid #1e3a52;
+      border-radius: 14px;
+      padding: 32px;
+    }
+    h1 { margin: 0 0 6px; font-size: 1.6rem; letter-spacing: -0.02em; }
+    .sub { color: #8aa0b8; margin: 0 0 24px; font-size: 0.95rem; }
+    .aviso {
+      background: rgba(56, 189, 248, 0.1);
+      border-left: 3px solid #38bdf8;
+      border-radius: 0 8px 8px 0;
+      padding: 14px 16px;
+      margin-bottom: 24px;
+      font-size: 0.9rem;
+      color: #cfe4f5;
+    }
+    .aviso strong { color: #7dd3fc; }
+    h2 {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #6b8299;
+      margin: 0 0 10px;
+    }
+    .cuentas { display: grid; gap: 10px; margin-bottom: 26px; }
+    .cuenta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      background: #0b1a28;
+      border: 1px solid #1e3a52;
+      border-radius: 8px;
+      padding: 12px 14px;
+      font-family: ui-monospace, Consolas, monospace;
+      font-size: 0.83rem;
+    }
+    .cuenta span:last-child { color: #8aa0b8; white-space: nowrap; }
+    .btn {
+      display: block;
+      text-align: center;
+      background: #38bdf8;
+      color: #06202f;
+      font-weight: 700;
+      text-decoration: none;
+      padding: 13px;
+      border-radius: 9px;
+      transition: filter 0.15s;
+    }
+    .btn:hover { filter: brightness(1.08); }
+    .pie { margin: 22px 0 0; font-size: 0.82rem; color: #6b8299; }
+    .pie a { color: #7dd3fc; }
+  </style>
+</head>
+<body>
+  <div class="caja">
+    <h1>TripExpress</h1>
+    <p class="sub">Sitio de ofertas de vuelos con registro, inicio de sesión y panel de administración.</p>
+
+    <div class="aviso">
+      <strong>Esto es una demo.</strong> El sitio necesita una API en Node con
+      MySQL detrás, y una página estática no puede levantar eso. El código del
+      navegador es el real, sin modificar; lo que está simulado son las
+      respuestas del servidor. Los datos se reinician al cerrar la pestaña.
+    </div>
+
+    <h2>Cuentas para entrar</h2>
+    <div class="cuentas">
+      <div class="cuenta"><span>demo@tripexpress.cr</span><span>Demo1234</span></div>
+      <div class="cuenta"><span>admin@tripexpress.cr</span><span>Admin1234</span></div>
+    </div>
+
+    <a class="btn" href="pages/login.html">Entrar a la demo</a>
+
+    <p class="pie">
+      Con la cuenta normal el botón de administración no aparece — y si lo forzás
+      desde la consola, la API responde 403. El control está del lado del servidor,
+      no en esconder botones.
+      <br><br>
+      Código y explicación de las vulnerabilidades corregidas en
+      <a href="https://github.com/Fofiuxx/ofertas-vuelos">el repositorio</a>.
+    </p>
+  </div>
+</body>
+</html>
